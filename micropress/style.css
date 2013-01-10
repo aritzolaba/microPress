@@ -1,0 +1,61 @@
+/*
+Theme Name: microPress
+Theme URI: http://www.olabaworks.com/microPress/
+Author: Aritz Olabarrieta
+Author URI: http://www.olabaworks.com
+Description: microPress is a lightweight theme for WordPress.
+Version: 1.0.0
+License: GNU General Public License
+License URI: license.txt
+Tags: two-columns, right-sidebar, custom-header, custom-background, translation-ready, featured-images
+*/
+
+/* BODY */
+#mp-body {
+    margin: 0px;
+}
+.mp-body-wrapper {
+    margin: auto;
+    width: 960px;
+}
+
+/* HEADER */
+#mp-header {
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+}
+.mp-header-wrapper {
+    padding: 20px 10px 10px 10px;
+}
+
+/* SECTION */
+#mp-section {
+    float: left;
+    width: 720px;
+}
+.mp-section-wrapper {
+    padding: 10px;
+}
+
+/* ASIDE */
+#mp-aside {
+    float: left;
+    width: 240px;
+}
+.mp-aside-wrapper {
+    padding: 10px;
+}
+
+/* FOOTER */
+#mp-footer {
+    clear: both;
+    height: 120px;
+    margin-top: 50px;
+}
+.mp-footer-block {
+    float: left;
+    width: 33.33%;
+}
+.mp-footer-block-wrapper {
+    padding: 10px;
+}
