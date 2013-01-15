@@ -1,8 +1,4 @@
-<?php
-/**
- * The index template file.
- */
-get_header(); ?>
+<?php get_header(); ?>
 
 <section id="mp-section">
 
@@ -12,55 +8,73 @@ get_header(); ?>
 
             <?php while (have_posts()) : the_post(); ?>
 
-                <article class="mp-article">
+                <article id="post-<?php the_ID(); ?>" <?php post_class('mp-article loop'); ?>>
 
-                    <header class="mp-article-header">
-                        <div class="mp-article-title">
-                            <a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a>
-                        </div>
+                    <div class="mp-article-wrapper">
 
-                        <div class="mp-article-subtitle">
-                            <?php the_date('M, d - Y'); ?>
-                        </div>
+                        <header class="mp-article-header">
+                            <div class="mp-article-date">
+                                <?php the_date('M, d - Y'); ?>
+                            </div>
 
-                        <div class="mp-article-details">
-                            <?php if (comments_open()) :
-                                $ncom=get_comments_number(); if ($ncom==0) $ncom= __('no comments', 'microPress'); elseif ($ncom==1) $ncom= __('1 comment', 'microPress'); else $ncom= sprintf (__('%s comments','microPress'), $ncom);
-                                echo $ncom;
-                            endif; ?>
-                        </div>
-                    </header>
+                            <div class="mp-article-title">
+                                <a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a>
+                            </div>
 
-                    <section class="mp-article-section">
+                            <div class="mp-article-subtitle">
+                                <?php if (comments_open()) : ?>
+                                    <a href="<?php the_permalink(); ?>" class="mp-article-comment-number">
+                                    <?php
+                                    $ncom=get_comments_number(); if ($ncom==0) $ncom= __('no comments', 'microPress'); elseif ($ncom==1) $ncom= __('1 comment', 'microPress'); else $ncom= sprintf (__('%s comments','microPress'), $ncom);
+                                    echo $ncom;
+                                    ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        </header>
 
-                        <?php the_excerpt(); ?>
+                        <section class="mp-article-section">
+                            <?php the_excerpt(); ?>
+                        </section>
 
-                    </section>
+                        <footer class="mp-article-footer">
+                            <div class="mp-article-footer-author">
+                                <span class="muted"><?php _e('Author', 'microPress'); ?></span> <?php the_author(); ?>
+                            </div>
+                            <?php the_category(); ?>
+                        </footer>
 
-                    <footer class="mp-article-footer">
-                        <?php the_author(); ?>
-                        <?php the_category(); ?>
-                    </footer>
+                    </div>
 
                 </article>
 
             <?php endwhile; ?>
 
+            <?php /* Display navigation to next/previous pages when applicable */ ?>
+            <?php if ( $wp_query->max_num_pages > 1 ) : ?>
+                    <div id="mp-article-nav" class="mp-article-nav">
+                        <div class="nav-previous"><?php next_posts_link( __( '&larr; Older posts', 'microPress' ) ); ?></div>
+                        <div class="nav-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'microPress' ) ); ?></div>
+                    </div><!-- #nav-above -->
+            <?php endif; ?>
+
         <?php else : ?>
 
             <article class="mp-article">
 
-                <header class="mp-article-header">
-                    <div class="mp-article-title">
-                        <?php _e('Nothing found', 'microPress'); ?>
-                    </div>
-                </header>
+                <div class="mp-article-wrapper">
 
-                <section class="mp-article-section">
+                    <header class="mp-article-header">
+                        <div class="mp-article-title">
+                            <?php _e('Nothing found', 'microPress'); ?>
+                        </div>
+                    </header>
 
-                    <?php _e('Ops!, there is nothing here. Maybe you got a wrong link?', 'microPress'); ?>
+                    <section class="mp-article-section">
+                        <?php _e('Ops!, there is nothing here. Maybe you got a wrong link?', 'microPress'); ?>
+                    </section>
 
-                </section>
+                </div>
 
             </article>
 

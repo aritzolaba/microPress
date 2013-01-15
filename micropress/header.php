@@ -1,8 +1,3 @@
-<?php
-/**
- * The Header for our theme.
- */
-?>
 <!DOCTYPE html>
 <!--[if IE 6]>
 <html id="ie6" <?php language_attributes(); ?>>
@@ -17,15 +12,21 @@
 <html <?php language_attributes(); ?>>
 <!--<![endif]-->
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="<?php $site_description=get_bloginfo('description', 'display'); echo $site_description; ?>">
-        <meta name="author" content="<?php echo get_bloginfo('name'); ?>">
+        <meta charset="<?php bloginfo( 'charset' ); ?>" />
+        <meta name="description" content="<?php bloginfo('description'); ?>">
+        <meta name="author" content="<?php bloginfo('name'); ?>">
         <title><?php
         global $page, $paged;
 
-        // Add wp_title ()
         wp_title( '|', true, 'right' );
+
+        // Add the blog name.
+	bloginfo( 'name' );
+
+        // Add the blog description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) )
+            echo " | $site_description";
 
         // Add a page number if necessary:
         if ($paged >= 2 || $page >= 2)
@@ -40,9 +41,10 @@
         <?php
         // Load theme assets
         pb_load_theme_assets();
-        ?>
 
-        <?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
+        // Enqueue comment-reply script if singular
+        if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
+        ?>
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
         <?php wp_head(); ?>
@@ -52,20 +54,58 @@
 
         <div class="mp-body-wrapper">
 
+            <?php // Header Image and textcolor
+            $header_textcolor = get_header_textcolor();
+            if ($header_textcolor && $header_textcolor != 'blank') $header_textcolor = 'style="color: #'.$header_textcolor.';"';
+
+            $header_image = get_header_image();
+            $header_image_style = '';
+            if ($header_image) $header_image_style = 'style="background: url(\''.$header_image.'\') repeat"';
+            ?>
+
             <header id="mp-header">
 
-                <div class="mp-header-wrapper">
+                <div class="mp-header-wrapper" <?php echo $header_image_style; ?>>
 
-                    <div class="mp-header-title">
-                        <a href="<?php echo get_site_url(); ?>" title="<?php echo get_bloginfo('name'); ?>">
-                            <?php echo get_bloginfo('name'); ?>
-                        </a>
-                    </div>
+                    <?php if ($header_textcolor != 'blank') : ?>
 
-                    <div class="mp-header-subtitle">
-                        <?php echo $site_description; ?>
-                    </div>
+                        <div id="site-title" class="mp-header-title">
+                            <a <?php echo $header_textcolor; ?> href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo('name')); ?>">
+                                <?php echo esc_attr( get_bloginfo('name')); ?>
+                            </a>
+                        </div>
+
+                        <div id="site-description" class="mp-header-subtitle">
+                            <a <?php echo $header_textcolor; ?> href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo('name')); ?>">
+                                <?php echo $site_description; ?>
+                            </a>
+                        </div>
+
+                    <?php endif; ?>
 
                 </div>
 
             </header>
+
+            <?php
+            // Display the nav_menu
+            $args = array (
+                'container' => 'nav',
+                'container_id' => 'mp-nav',
+                'container_class' => 'mp-nav-menu',
+                'theme_location' => 'primary'
+            );
+            wp_nav_menu($args);
+
+            // Small pure js snippet for adding necessary classes
+            // to wp_nav_menu elements, and make dropdowns work
+            ?>
+            <script type="text/javascript">
+                //<![CDATA[
+                var ele = document.getElementsByClassName('sub-menu');
+                var i = 0;
+                for (; i<ele.length; i++) {
+                    ele[i].parentNode.setAttribute('class','has-dropdown');
+                }
+                //]]>
+            </script>

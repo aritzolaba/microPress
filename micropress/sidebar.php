@@ -1,9 +1,3 @@
-<?php
-/**
- * The sidebar template file.
- */
-?>
-
 <aside id="mp-aside">
 
     <div class="mp-aside-wrapper">

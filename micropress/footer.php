@@ -1,8 +1,5 @@
-<?php
-/**
- * The template for the footer.
- */
-?>
+    </div><!-- #mp-body-wrapper (initiated at header -->
+
     <footer id="mp-footer">
 
         <div class="mp-footer-wrapper">
@@ -12,16 +9,16 @@
 
                     <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('mp-widgets-footer-block-1')) : ?>
 
-                        <div class="mp-widget-footer">
-                            <div class="mp-widget-title">
+                        <li class="widget widget-placeholder-block-1">
+                            <h2 class="widgettitle">
                                 Footer block 1
-                            </div>
+                            </h2>
                             <div class="mp-widget-content">
                                 <div class="textwidget">
                                     This is footer block 1. You can add widgets here if you want.
                                 </div>
                             </div>
-                        </div>
+                        </li>
 
                     <?php endif; ?>
 
@@ -33,16 +30,14 @@
 
                     <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('mp-widgets-footer-block-2')) : ?>
 
-                        <div class="mp-widget-footer">
-                            <div class="mp-widget-title">
+                        <li class="widget widget-placeholder-block-2">
+                            <h2 class="widgettitle">
                                 Footer block 2
+                            </h2>
+                            <div class="textwidget">
+                                This is footer block 2. You can add widgets here if you want.
                             </div>
-                            <div class="mp-widget-content">
-                                <div class="textwidget">
-                                    This is footer block 2. You can add widgets here if you want.
-                                </div>
-                            </div>
-                        </div>
+                        </li>
 
                     <?php endif; ?>
 
@@ -54,16 +49,14 @@
 
                     <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('mp-widgets-footer-block-3')) : ?>
 
-                        <div class="mp-widget-footer">
-                            <div class="mp-widget-title">
+                        <li class="widget widget-placeholder-block-3">
+                            <h2 class="widgettitle">
                                 Footer block 3
+                            </h2>
+                            <div class="textwidget">
+                                This is footer block 3. You can add widgets here if you want.
                             </div>
-                            <div class="mp-widget-content">
-                                <div class="textwidget">
-                                    This is footer block 3. You can add widgets here if you want.
-                                </div>
-                            </div>
-                        </div>
+                        </li>
 
                     <?php endif; ?>
 
@@ -74,7 +67,7 @@
 
     </footer>
 
-    </div><!-- #mp-wrapper (initiated at header -->
+    <?php wp_footer(); ?>
 
     </body>
 </html>
