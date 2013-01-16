@@ -34,6 +34,7 @@ a:hover {
 #mp-footer {
     background: #222222 url('../../imgs/navy_blue.png') repeat;
     color: #eeeeee;
+    box-shadow: -1px 0px 4px #666666;
 }
 #mp-footer a {
     color: #999999;
@@ -81,38 +82,43 @@ a.mp-article-comment-number:hover {
     box-shadow: 1px 1px 1px #555;
     border-radius: 3px;
 }
+.mp-article-header-thumbnail img {
+    border-radius: 4px;
+    box-shadow: 0 0 10px #999;
+    padding: 8px;
+}
 
 /* NAV_MENU */
-.mp-nav-menu,
-.mp-nav-menu ul > li.has-dropdown .sub-menu li,
-.mp-nav-menu ul > li.has-dropdown .sub-menu {
+.menu,
+.menu ul > li.has-dropdown ul.children li,
+.menu ul > li.has-dropdown ul.children {
     background: #222222 url('../../imgs/navy_blue.png') repeat;
 }
-.mp-nav-menu ul > li a {
+.menu ul > li a {
     color: #dddddd;
 }
-.mp-nav-menu ul > li:hover,
-.mp-nav-menu ul > li.active {
+.menu ul > li:hover,
+.menu ul > li.active {
     /*background: #111111;*/
 }
-.mp-nav-menu ul > li:hover a,
-.mp-nav-menu ul > li.active a {
+.menu ul > li:hover a,
+.menu ul > li.active a {
     color: #ffffff;
 }
-.mp-nav-menu ul > li.has-dropdown a:after {
+.menu ul > li.has-dropdown a:after {
     border-color: #999 transparent transparent transparent;
 }
-.mp-nav-menu ul > li.has-dropdown a:hover:after,
-.mp-nav-menu ul > li.has-dropdown:hover a:after {
+.menu ul > li.has-dropdown a:hover:after,
+.menu ul > li.has-dropdown:hover a:after {
     border-color: #ddd transparent transparent transparent;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu li a {
+.menu ul > li.has-dropdown ul.children li a {
     color: #f0f0f0;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu li a:hover {
+.menu ul > li.has-dropdown ul.children li a:hover {
     background: #3c3c3c;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu li.active a {
+.menu ul > li.has-dropdown ul.children li.active a {
     background: #000;
 }
 
@@ -172,4 +178,5 @@ h3#reply-title {
 }
 .widget_calendar table td {
     border: 1px solid #ddd;
+    color: #999;
 }

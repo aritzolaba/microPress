@@ -66,9 +66,10 @@ img {
 #mp-footer {
     clear: both;
     display: inline-block;
-    min-height: 120px;
     margin-top: 50px;
+    min-height: 120px;
     overflow: hidden;
+    width: 100%;
 }
 .mp-footer-wrapper {
     margin-bottom: 10px;
@@ -93,12 +94,22 @@ img {
 .mp-article-header {
     margin-bottom: 20px;
 }
+.mp-article-header-thumbnail {
+    display: inline-block;
+    float: left;
+    margin-top: 5px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
 .mp-article-subtitle {
     margin: 5px 0px;
 }
 .mp-article-section {
     margin-bottom: 20px;
     padding: 0px 5px;
+}
+.mp-article-section p {
+    margin-bottom: 10px;
 }
 .mp-article-thumbnail {
     margin: 20px 20px;
@@ -132,7 +143,11 @@ img {
     padding: 2px 4px;
 }
 .mp-article-nav {
+    clear: both;
+    display: inline-block;
+    margin-top: 20px;
     min-height: 40px;
+    width: 100%;
 }
 .mp-article-nav .nav-previous {
     float: left;
@@ -145,24 +160,24 @@ img {
 * NAV-MENU
 * CSS taken from "Foundation" front-end framework
 */
-.mp-nav-menu {
+.menu {
     margin: 0 0 20px;
     padding: 0;
     width: 100%;
     height: 32px;
 }
-.mp-nav-menu a {
+.menu a {
     text-decoration: none;
 }
-.mp-nav-menu ul {
+.menu ul {
     margin-left: 0;
     display: inline;
     list-style: none;
 }
-.mp-nav-menu ul > li {
+.menu ul > li {
     float: left;
 }
-.mp-nav-menu ul > li a {
+.menu ul > li a {
     display: block;
     font-size: 13px;
     font-weight: bold;
@@ -170,17 +185,17 @@ img {
     line-height: 32px;
     padding: 0 15px;
 }
-.mp-nav-menu ul > li.has-dropdown {
+.menu ul > li.has-dropdown {
     position: relative;
 }
-.mp-nav-menu ul > li.has-dropdown:hover > .sub-menu {
+.menu ul > li.has-dropdown:hover > ul.children {
     display: block;
     visibility: visible;
 }
-.mp-nav-menu ul > li.has-dropdown a {
+.menu ul > li.has-dropdown a {
     padding-right: 33.75px;
 }
-.mp-nav-menu ul > li.has-dropdown a:after {
+.menu ul > li.has-dropdown a:after {
     content: "";
     display: block;
     width: 0;
@@ -192,7 +207,7 @@ img {
     right: 0;
     top: 50%;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu {
+.menu ul > li.has-dropdown ul.children {
     left: 0;
     margin: 0;
     padding: 9px 0 0 0;
@@ -200,39 +215,39 @@ img {
     visibility: hidden;
     z-index: 99;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu li {
+.menu ul > li.has-dropdown ul.children li {
     line-height: 1;
     min-width: 100%;
     padding-bottom: 5px;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu li a {
+.menu ul > li.has-dropdown ul.children li a {
     font-weight: normal;
     height: 100%;
     line-height: 1;
     padding: 5px 17px 5px 15px;
     white-space: nowrap;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu li a:after {
+.menu ul > li.has-dropdown ul.children li a:after {
     border: none;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu li:last-child {
+.menu ul > li.has-dropdown ul.children li:last-child {
     padding-bottom: 10px;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu li.has-dropdown > a {
+.menu ul > li.has-dropdown ul.children li.has-dropdown > a {
     padding-right: 30px;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu li.has-dropdown > a:after {
+.menu ul > li.has-dropdown ul.children li.has-dropdown > a:after {
     border: none;
     content: "\00bb";
     right: 5px;
     top: 6px;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu li.has-dropdown .sub-menu {
+.menu ul > li.has-dropdown ul.children li.has-dropdown ul.children {
     position: absolute;
     left: 100%;
     top: 0;
 }
-.mp-nav-menu ul > li.has-dropdown .sub-menu li.has-dropdown:hover > .sub-menu {
+.menu ul > li.has-dropdown ul.children li.has-dropdown:hover > ul.children {
     display: block;
 }
 
@@ -259,6 +274,7 @@ div#respond {
     border-radius: 3px;
     margin-bottom: 5px;
     padding: 10px;
+    padding-bottom: 20px;
 }
 h3#reply-title {
     margin: 0px;
@@ -376,8 +392,22 @@ li.widget ul li {
     padding: 5px;
     text-align: center;
 }
+.widget_calendar table td a {
+    font-weight: bold;
+}
 .widget_calendar table td.pad {
     border: none;
+}
+.widget_calendar table td#prev {
+    border: none;
+    text-align: left;
+}
+.widget_calendar table td#next {
+    border: none;
+    text-align: right;
+}
+.widget_calendar table tfoot td {
+    padding: 10px 0px 5px 0px;
 }
 
 /*********************************************************************
@@ -394,7 +424,7 @@ li.widget ul li {
     font-family: inherit;
 }
 .sticky {
-    border: 1px solid #ffffee;
+    border: 2px dashed #ffffee;
 }
 .alignleft {
     display: inline;

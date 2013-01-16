@@ -13,6 +13,28 @@
                     <div class="mp-article-wrapper">
 
                         <header class="mp-article-header">
+
+                            <?php
+                            // Article post thumbnail (featured image)
+                            if ( (has_post_thumbnail())) : ?>
+
+                                <?php
+                                // Get attached file guid
+                                $att = get_post_meta(get_the_ID(),'_thumbnail_id',true);
+                                $thumb = get_post($att);
+                                if ($att) { $att = $thumb->guid; }
+                                else $att = $post->guid;
+                                ?>
+                                <div class="mp-article-header-thumbnail">
+                                    <a class="thickbox" href="<?php echo $att; ?>">
+                                    <?php
+                                    echo get_the_post_thumbnail(get_the_ID(), 'loop-thumbnail');
+                                    ?>
+                                    </a>
+                                </div>
+
+                            <?php endif; ?>
+
                             <div class="mp-article-date">
                                 <?php the_date('M, d - Y'); ?>
                             </div>

@@ -33,27 +33,6 @@
                             <?php endif; ?>
                         </header>
 
-                        <?php
-                        // Article post thumbnail (featured image)
-                        if ( (has_post_thumbnail())) : ?>
-
-                            <?php
-                            // Get attached file guid
-                            $att = get_post_meta(get_the_ID(),'_thumbnail_id',true);
-                            $thumb = get_post($att);
-                            if ($att) { $att = $thumb->guid; }
-                            else $att = $post->guid;
-                            ?>
-                            <div class="mp-article-thumbnail">
-                                <a class="thickbox" href="<?php echo $att; ?>">
-                                <?php
-                                echo get_the_post_thumbnail(get_the_ID(), 'post-thumbnail');
-                                ?>
-                                </a>
-                            </div>
-
-                        <?php endif; ?>
-
                         <section class="mp-article-section">
                             <?php
                             // The content

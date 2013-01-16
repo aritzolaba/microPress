@@ -92,17 +92,26 @@
             $args = array (
                 'container' => 'nav',
                 'container_id' => 'mp-nav',
-                'container_class' => 'mp-nav-menu',
-                'theme_location' => 'primary'
+                'container_class' => 'menu',
+                'menu_class' => 'menu',
+                'fallback_cb' => 'wp_page_menu',
+                'items_wrap' => '<ul id="%1$s" class="%2$s lerele">%3$s</ul>',
+                'theme_location' => 'primary',
+                'echo' => 0
             );
-            wp_nav_menu($args);
+            // We obtain the menu and replace class sub-menu with class children,
+            // to make menus act identically, wether is a custom menu or a fallback
+            $menu = str_replace('class="sub-menu"', 'class="children"', wp_nav_menu($args));
+
+            // Display the menu
+            echo $menu;
 
             // Small pure js snippet for adding necessary classes
             // to wp_nav_menu elements, and make dropdowns work
             ?>
             <script type="text/javascript">
                 //<![CDATA[
-                var ele = document.getElementsByClassName('sub-menu');
+                var ele = document.getElementsByClassName('children');
                 var i = 0;
                 for (; i<ele.length; i++) {
                     ele[i].parentNode.setAttribute('class','has-dropdown');

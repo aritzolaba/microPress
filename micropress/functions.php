@@ -64,11 +64,14 @@ add_theme_support('custom-background');
 add_theme_support('custom-header', $custom_header_args);
 add_theme_support('post-thumbnails', array('post'));
 
-// Add custom image size for thumbnails in loops
-if (function_exists('add_image_size')) add_image_size('post-thumbnail', 340, 0, true);
-
 // Set content width
 if (!isset($content_width)) $content_width = 700;
+
+// Add custom image size for thumbnails in loops
+if (function_exists('add_image_size')) {
+    add_image_size('post-thumbnail', 540, 280, true);
+    add_image_size('loop-thumbnail', 320, 100, true);
+}
 
 // This theme styles the visual editor with editor-style.css to match the theme style.
 add_editor_style();
@@ -85,6 +88,7 @@ add_editor_style();
 function pb_load_theme_assets () {
     wp_enqueue_style('microPress-main-css', get_template_directory_uri() . '/style.css', array() );
     wp_enqueue_style('microPress-theme-css', get_template_directory_uri() . '/assets/themes/light/light.css', array() );
+    //wp_enqueue_style('microPress-theme-css', get_template_directory_uri() . '/assets/themes/dark/dark.css', array() );
 }
 
 /*********************************************************************
